@@ -10,11 +10,13 @@ abstract class BatteryStatusPluginPlatform extends PlatformInterface {
 
   static BatteryStatusPluginPlatform _instance = MethodChannelBatteryStatusPlugin();
 
+  Stream<int> get batteryLvl => _instance.batteryLvl;
+
   /// The default instance of [BatteryStatusPluginPlatform] to use.
   ///
   /// Defaults to [MethodChannelBatteryStatusPlugin].
   static BatteryStatusPluginPlatform get instance => _instance;
-  
+
   /// Platform-specific implementations should set this with their own
   /// platform-specific class that extends [BatteryStatusPluginPlatform] when
   /// they register themselves.
@@ -24,6 +26,18 @@ abstract class BatteryStatusPluginPlatform extends PlatformInterface {
   }
 
   Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+    return _instance.getPlatformVersion();
+  }
+
+  Future<int?> getCurrentBatteryLevel() {
+    return _instance.getCurrentBatteryLevel();
+  }
+
+  void dispose() {
+    _instance.dispose();
+  }
+
+  Future<void> init() {
+    return _instance.init();
   }
 }
