@@ -1,7 +1,6 @@
 name: battery_status_plugin
 description: A new Flutter plugin project.
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
